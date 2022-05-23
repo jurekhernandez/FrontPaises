@@ -23,7 +23,7 @@ export class PaisService {
   }
   
   GetCountryForCode(code:string):Observable<Country[]>{
-    const url=`${this.UrlApi}/alpha/${code}`;
+    const url=`${this.UrlApi}/code/${code}`;
     return this.http.get<Country[]>(url);
   }
 
