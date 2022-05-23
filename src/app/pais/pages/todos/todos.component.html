@@ -1,0 +1,49 @@
+<h2>Todos</h2>
+
+<div *ngIf="countries.length == 0; else divPaises" class="alert alert-info">
+    Cargando espere por favor ...
+</div>
+
+<hr>
+<!-- 
+<ng-template #divPaises>
+    <div *ngIf="existError" class="alert alert-danger">
+        No se encontro el termino buscado
+    </div>
+
+    <div *ngIf="countries.length >0     " class="row">
+        <div class="col">
+            <app-pais-tabla [paises]="countries"></app-pais-tabla>
+        </div>
+    </div>
+</ng-template>
+
+-->
+<ng-template #divPaises>
+
+    <p-table [value]="countries" [paginator]="true" [rows]="rows" [columns]="cols" [responsive]="true" [rowHover]="true" class="p-datatable-striped" styleClass="p-datatable-gridlines" responsiveLayout="scroll" [globalFilterFields]="['common','capital']">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Bandera </th>
+                <th>Nombre </th>
+                <th>Capital </th>
+                <th>Poblacion </th>
+                <th>Ver </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-country>
+            <tr>
+                <td>
+                    <img class="small-flag" src="{{ country.flags.png }}" alt="">
+                </td>
+                <td title="{{ country.name.official }}">{{ country.name.common }}</td>
+                <td>{{ country.capital }}</td>
+                <td>{{ country.population | number }}</td>
+                <td>
+                    <a [routerLink]="[ '/verPais', country.cca2]">Ver</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</ng-template>
